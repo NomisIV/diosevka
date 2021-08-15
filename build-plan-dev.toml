@@ -1,0 +1,218 @@
+# https://github.com/be5invis/Iosevka/tree/v9.0.1#configuring-character-variants
+
+[buildPlans.diosevka]
+family = "Diosevka"
+spacing = "term"
+
+[buildPlans.diosevka.variants.design]
+capital-a = 'curly-serifless'
+capital-b = 'standard-serifless'
+capital-c = 'serifless'
+capital-d = 'standard-serifless'
+capital-e = 'serifless'
+capital-f = 'serifless'
+capital-g = 'toothless-corner-serifless-hooked'
+capital-h = 'serifless'
+capital-i = 'serifed'
+capital-j = 'flat-hook-serifless'
+capital-k = 'curly-serifless'
+capital-l = 'serifless'
+capital-m = 'hanging'
+capital-n = 'asymmetric'
+capital-p = 'closed'
+capital-q = 'curly-tailed'
+capital-r = 'curly'
+capital-s = 'serifless'
+capital-t = 'serifless'
+capital-u = 'toothless-rounded'
+capital-v = 'curly'
+capital-w = 'curly'
+capital-x = 'curly-serifless'
+capital-y = 'curly-serifless'
+capital-z = 'curly-serifless'
+
+a = 'double-storey-toothless-corner'
+b = 'toothless-corner'
+c = 'serifless'
+d = 'toothless-corner-serifless'
+e = 'flat-crossbar'
+f = 'flat-hook-crossbar-at-x-height'
+g = 'single-storey-earless-corner-flat-hook'
+h = 'straight'
+i = 'serifed-flat-tailed'
+j = 'flat-hook-serifed'
+k = 'curly-serifless'
+l = 'serifed-flat-tailed'
+m = 'earless-corner-double-arch-short-leg'
+n = 'earless-corner-straight'
+p = 'earless-corner'
+q = 'earless-corner'
+r = 'earless-corner'
+s = 'serifless'
+t = 'flat-hook'
+u = 'toothless-corner'
+v = 'curly'
+w = 'curly'
+x = 'curly-serifless'
+y = 'curly'
+z = 'curly-serifless'
+
+long-s = 'flat-hook'
+eszet = 'longs-s-lig'
+turn-v = 'curly'
+lower-alpha = 'crossing'
+lower-delta = 'rounded'
+capital-gamma = 'serifless'
+lower-iota = 'serifed-flat-tailed'
+lower-lambda = 'curly'
+lower-xi = 'flat-top'
+cyrl-capital-ze = 'serifless'
+cyrl-ze = 'serifless'
+cyrl-capital-ka = 'curly-serifless'
+cyrl-ka = 'curly-serifless'
+cyrl-el = 'straight'
+cyrl-en = 'serifless'
+cyrl-ef = 'serifless'
+cyrl-che = 'standard'
+cyrl-capital-u = 'curly'
+cyrl-capital-ya = 'curly'
+cyrl-ya = 'curly'
+cyrl-yeri = 'round'
+cyrl-yery = 'round'
+
+zero = 'slashed'
+# one = 'noBase'
+cv72 = 1
+two = 'curly-neck'
+# three = 'twoArcs'
+cv74 = 2
+four = 'semi-open-non-crossing'
+five = 'vertical-upper-left-bar'
+six = 'open-contour'
+seven = 'curly-serifless'
+eight = 'crossing'
+nine = 'open-contour'
+
+tilde = 'low'
+asterisk = 'penta-low'
+underscore = 'above-baseline'
+paragraph-sign = 'high'
+caret = 'low'
+paren = 'normal'
+brace = 'straight'
+number-sign = 'upright'
+ampersand = 'closed'
+at = 'threefold'
+dollar = 'through'
+cent = 'through'
+percent = 'dots'
+bar = 'force-upright'
+lig-ltgteq = 'slanted'
+ascii-single-quote = 'straight'
+ascii-grave = 'straight'
+question = 'corner-flat-hooked'
+punctuation-dot = 'round'
+
+[buildPlans.diosevka.variants.italic]
+capital-a = 'curly-tri-serifed'
+capital-b = 'standard-bilateral-serifed'
+capital-c = 'bilateral-inward-serifed'
+capital-d = 'standard-bilateral-serifed'
+capital-e = 'serifed'
+capital-f = 'serifed'
+capital-g = 'toothed-inward-serifed-hooked'
+capital-h = 'serifed'
+capital-i = 'serifed'
+capital-j = 'flat-hook-serifed'
+capital-k = 'curly-serifed'
+capital-l = 'serifed'
+capital-m = 'hanging-motion-serifed'
+capital-n = 'asymmetric-motion-serifed'
+capital-p = 'closed-motion-serifed'
+capital-q = 'curly-tailed'
+capital-r = 'curly-motion-serifed'
+capital-s = 'bilateral-inward-serifed'
+capital-t = 'serifed'
+capital-u = 'tailed-motion-serifed'
+capital-v = 'curly-motion-serifed'
+capital-w = 'curly-motion-serifed'
+capital-x = 'curly-serifed'
+capital-y = 'curly-serifed'
+capital-z = 'curly-serifed'
+
+a = 'double-storey-tailed'
+b = 'toothed-motion-serifed'
+c = 'bilateral-inward-serifed'
+d = 'tailed-serifed'
+e = 'rounded'
+f = 'flat-hook-tailed-crossbar-at-x-height'
+g = 'double-storey'
+h = 'tailed-motion-serifed'
+i = 'serifed-flat-tailed'
+j = 'flat-hook-serifed'
+k = 'cursive-serifed'
+l = 'serifed-flat-tailed'
+m = 'short-leg-tailed-top-left-serifed'
+n = 'tailed-motion-serifed'
+p = 'motion-serifed'
+q = 'tailed-motion-serifed'
+r = 'corner-hooked-serifed'
+s = 'bilateral-inward-serifed'
+t = 'flat-hook'
+u = 'tailed-motion-serifed'
+v = 'curly-motion-serifed'
+w = 'curly-motion-serifed'
+x = 'curly-serifed'
+y = 'curly-turn-motion-serifed'
+z = 'curly-serifed'
+
+long-s = 'flat-hook-tailed'
+eszet = 'longs-s-lig-tailed'
+turn-v = 'curly'
+lower-alpha = 'crossing'
+lower-delta = 'flat-top'
+capital-gamma = 'serifed'
+lower-iota = 'serifed-flat-tailed'
+lower-lambda = 'curly-turn'
+lower-xi = 'flat-top'
+cyrl-capital-ze = 'bilateral-inward-serifed'
+cyrl-ze = 'bilateral-inward-serifed'
+cyrl-capital-ka = 'curly-serifed'
+cyrl-ka = 'curly-serifed'
+cyrl-el = 'tailed'
+cyrl-en = 'serifed'
+cyrl-ef = 'serifed'
+cyrl-che = 'tailed'
+cyrl-capital-u = 'curly-turn'
+cyrl-capital-ya = 'curly'
+cyrl-ya = 'curly'
+cyrl-yeri = 'round'
+cyrl-yery = 'round-tailed'
+
+[buildPlans.diosevka.weights.regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.diosevka.weights.bold]
+shape = 700
+menu = 700
+css = 700
+
+[buildPlans.diosevka.slopes.upright]
+angle = 0
+shape = "upright"
+menu = "upright"
+css = "normal"
+
+[buildPlans.diosevka.slopes.italic]
+angle = 9.4
+shape = "italic"
+menu = "italic"
+css = "italic"
+
+# This is neccessary to prevent all widths from being compiled
+[buildPlans.diosevka.widths.normal]
+shape = 500
+menu = 5
+css = "normal"

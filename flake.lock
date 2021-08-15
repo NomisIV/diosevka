@@ -1,0 +1,59 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1628845335,
+        "narHash": "sha256-eNyOSej++O4VQ1kwDROK8379RLLQvJLJylVe3RHhDtY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "95c7f7ed587025f4f65eaf2b623d09ff9333a963",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "npmlock2nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628671444,
+        "narHash": "sha256-2xpZVVpY3X6fQdXntIxpPzl5JHk72VD4kgWyrO2evT8=",
+        "owner": "tweag",
+        "repo": "npmlock2nix",
+        "rev": "c63a75e9e31ea5d7d6f94ee9ced41979908087fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tweag",
+        "repo": "npmlock2nix",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs",
+        "npmlock2nix": "npmlock2nix"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
