@@ -24,7 +24,7 @@
           owner = "be5invis";
           repo = "Iosevka";
           rev = version;
-          sha256 = "sha256:0467y1ik73h7ll0drr1k0n2wqr1x0py2zg137qafgha2d4nrkxyz";
+          sha256 = "sha256-9mg2Cvh8yVd4Iey3y7beXc8Mjnr155yg5ctRfvKmNZg=";
         };
 
         diosevka = font_type: npm.build {
