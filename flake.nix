@@ -16,7 +16,7 @@
         pkgs = nixpkgs.legacyPackages."${system}";
         npm = pkgs.callPackage (npmlock2nix + "/internal.nix") { };
 
-        version = "dev";
+        version = "v10.0.0";
 
         build_plan = ./. + "/build-plan-${version}.toml";
 

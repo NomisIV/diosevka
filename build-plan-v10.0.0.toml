@@ -81,11 +81,9 @@ cyrl-yeri = 'round'
 cyrl-yery = 'round'
 
 zero = 'slashed'
-# one = 'noBase'
-cv72 = 1
+one = 'no-base'
 two = 'curly-neck'
-# three = 'twoArcs'
-cv74 = 2
+three = 'two-arcs'
 four = 'semi-open-non-crossing'
 five = 'vertical-upper-left-bar'
 six = 'open-contour'
