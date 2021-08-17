@@ -53,6 +53,7 @@
           woff2 = diosevka "woff2";
         };
         defaultPackage = packages.ttf;
+        legacyPackages = packages;
       }
     );
 }
