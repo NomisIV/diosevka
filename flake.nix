@@ -48,6 +48,7 @@
         };
       in rec {
         packages = {
+          all = diosevka "contents";
           ttf = diosevka "ttf";
           ttf-unhinted = diosevka "ttf-unhinted";
           woff2 = diosevka "woff2";
