@@ -41,8 +41,8 @@
 
           installPhase = ''
             runHook preInstall
-            mkdir -p $out/share/fonts/$pname
-            cp -r dist/diosevka/${font_type} $out/share/fonts/$pname
+            mkdir -p $out/share/fonts/diosevka
+            cp -r dist/diosevka/${font_type} $out/share/fonts/diosevka
             runHook postInstall
           '';
         };
