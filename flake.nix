@@ -77,7 +77,7 @@
           buildInputs = [ otf2bdf ];
           src = diosevka "ttf";
           buildPhase = ''
-            otf2bdf -p 32 -r 96 -o diosevka.bdf share/fonts/diosevka/ttf/diosevka-regular.ttf || echo ""
+            otf2bdf -p 20 -r 96 -o diosevka.bdf share/fonts/diosevka/ttf/diosevka-regular.ttf || echo ""
           '';
           installPhase = ''
             mkdir -p $out/share/fonts/diosevka/bdf
@@ -92,7 +92,7 @@
           src = diosevkaBdf;
 
           patchPhase = ''
-            sed 's/AVERAGE_WIDTH 168/AVERAGE_WIDTH 160/' share/fonts/diosevka/bdf/diosevka.bdf > patched-diosevka.bdf
+            sed 's/AVERAGE_WIDTH 107/AVERAGE_WIDTH 120/' share/fonts/diosevka/bdf/diosevka.bdf > patched-diosevka.bdf
           '';
 
           buildPhase = ''
