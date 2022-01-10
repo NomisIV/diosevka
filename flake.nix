@@ -40,7 +40,7 @@
 
         npm = pkgs.callPackage (npmlock2nix + "/internal.nix") { };
 
-        version = "v11.0.1";
+        version = "v11.2.6";
 
         build_plan = ./. + "/build-plan-${version}.toml";
 
@@ -48,7 +48,7 @@
           owner = "be5invis";
           repo = "Iosevka";
           rev = version;
-          sha256 = "sha256-yGLvXTvxHBvFpyuXHpUaT8rAHXP8jiGgBLQoeBXDp60=";
+          sha256 = "sha256-yRxVq4ZrT02uDDkfemed0IDi68fQPQGZGXDqhStyoBc=";
         };
 
         diosevka = font_type: npm.build {
