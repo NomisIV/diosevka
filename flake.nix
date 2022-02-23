@@ -5,7 +5,7 @@
     nixpkgs.url = github:NixOS/nixpkgs;
     flake-utils.url = github:numtide/flake-utils;
     npmlock2nix = {
-      url = github:tweag/npmlock2nix;
+      url = github:nix-community/npmlock2nix;
       flake = false;
     };
   };

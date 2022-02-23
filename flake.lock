@@ -2,11 +2,11 @@
   "nodes": {
     "flake-utils": {
       "locked": {
-        "lastModified": 1623875721,
-        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
         "type": "github"
       },
       "original": {
@@ -33,15 +33,15 @@
     "npmlock2nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1628671444,
-        "narHash": "sha256-2xpZVVpY3X6fQdXntIxpPzl5JHk72VD4kgWyrO2evT8=",
-        "owner": "tweag",
+        "lastModified": 1645047048,
+        "narHash": "sha256-5nLXWhniuFvYD45iXdqx2xS3kdPt+Uj1Z+UgjttXY4o=",
+        "owner": "nix-community",
         "repo": "npmlock2nix",
-        "rev": "c63a75e9e31ea5d7d6f94ee9ced41979908087fb",
+        "rev": "beca8b49d2dbe9739ca45786b5a5a0f65fcb5350",
         "type": "github"
       },
       "original": {
-        "owner": "tweag",
+        "owner": "nix-community",
         "repo": "npmlock2nix",
         "type": "github"
       }
