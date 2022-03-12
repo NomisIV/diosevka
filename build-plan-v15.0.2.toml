@@ -113,6 +113,7 @@ ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "corner-flat-hooked"
 punctuation-dot = "round"
+diacritic-dot = "round"
 
 [buildPlans.diosevka.variants.italic]
 capital-a = "curly-tri-serifed"
