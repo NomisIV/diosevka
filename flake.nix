@@ -104,6 +104,8 @@
     };
   in rec {
     packages = {
+      default = diosevka "ttf";
+
       ttf = diosevka "ttf";
       ttf-unhinted = diosevka "ttf-unhinted";
       woff2 = diosevka "woff2";
@@ -112,7 +114,5 @@
 
       otf2bdf = otf2bdf;
     };
-    defaultPackage = packages.ttf;
-    legacyPackages = packages;
   });
 }
