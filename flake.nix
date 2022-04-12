@@ -73,9 +73,9 @@
       name = "diosevka-bdf";
       version = version;
       buildInputs = [ otf2bdf ];
-      src = diosevka "ttf";
+      src = diosevka "ttf-unhinted";
       buildPhase = ''
-        otf2bdf -p 20 -r 96 -o diosevka.bdf share/fonts/diosevka/ttf/diosevka-regular.ttf || echo ""
+        otf2bdf -p 12 -rh 96 -rv 95 -o diosevka.bdf share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf || echo ""
       '';
       installPhase = ''
         mkdir -p $out/share/fonts/diosevka/bdf
@@ -90,11 +90,20 @@
       src = diosevkaBdf;
 
       patchPhase = ''
-        sed -i 's/AVERAGE_WIDTH 107/AVERAGE_WIDTH 120/' share/fonts/diosevka/bdf/diosevka.bdf
+        # Round the average width
+        bdf="share/fonts/diosevka/bdf/diosevka.bdf"
+        width="$(grep AVERAGE_WIDTH $bdf | cut -d ' ' -f 2)"
+        width="$(( (((width - 1) / 10) + 2) * 10))"
+        sed -i "s/AVERAGE_WIDTH .*/AVERAGE_WIDTH $width/" $bdf
       '';
 
       buildPhase = ''
-        bdf2psf --fb share/fonts/diosevka/bdf/diosevka.bdf ${pkgs.bdf2psf}/share/bdf2psf/standard.equivalents ${pkgs.bdf2psf}/share/bdf2psf/fontsets/Uni2.512 512 diosevka.psf
+        bdf2psf --fb \
+          share/fonts/diosevka/bdf/diosevka.bdf \
+          ${pkgs.bdf2psf}/share/bdf2psf/standard.equivalents \
+          ${pkgs.bdf2psf}/share/bdf2psf/fontsets/Uni2.512 \
+          512 \
+          diosevka.psf
       '';
 
       installPhase = ''
