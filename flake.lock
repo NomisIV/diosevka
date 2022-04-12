@@ -2,11 +2,11 @@
   "nodes": {
     "flake-utils": {
       "locked": {
-        "lastModified": 1644229661,
-        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
         "type": "github"
       },
       "original": {
@@ -15,13 +15,29 @@
         "type": "github"
       }
     },
+    "nix-npm-buildpackage": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648040270,
+        "narHash": "sha256-HZU4h2J5gre5ASHynlln+KoK7wgtFjsqkzVVG2XsFXM=",
+        "owner": "serokell",
+        "repo": "nix-npm-buildpackage",
+        "rev": "881f4bfa68e33cd0fb69e6b739fb92f8d0bbe37e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serokell",
+        "repo": "nix-npm-buildpackage",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1628845335,
-        "narHash": "sha256-eNyOSej++O4VQ1kwDROK8379RLLQvJLJylVe3RHhDtY=",
+        "lastModified": 1649768226,
+        "narHash": "sha256-YQGKp2vJPobj0nFj/7I5YY1iVSqke3/eORMzRATVhoU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "95c7f7ed587025f4f65eaf2b623d09ff9333a963",
+        "rev": "3e6f9de0dea9361d7e8244dbc50770be494f92e8",
         "type": "github"
       },
       "original": {
@@ -33,11 +49,11 @@
     "npmlock2nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1645047048,
-        "narHash": "sha256-5nLXWhniuFvYD45iXdqx2xS3kdPt+Uj1Z+UgjttXY4o=",
+        "lastModified": 1648735462,
+        "narHash": "sha256-G22WBttdFoWp7E/YvGfePOc+W+ZsQGw+IwpFbAwJNeI=",
         "owner": "nix-community",
         "repo": "npmlock2nix",
-        "rev": "beca8b49d2dbe9739ca45786b5a5a0f65fcb5350",
+        "rev": "dd2897c3a6e404446704a63f40b9a29fa0acf752",
         "type": "github"
       },
       "original": {
@@ -49,6 +65,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "nix-npm-buildpackage": "nix-npm-buildpackage",
         "nixpkgs": "nixpkgs",
         "npmlock2nix": "npmlock2nix"
       }
