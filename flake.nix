@@ -2,7 +2,7 @@
   description = "My custom build of Iosevka";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs; # Do not update this (I think npm=7.x.x is required for iosevka to build)
+    nixpkgs.url = github:NixOS/nixpkgs;
     flake-utils.url = github:numtide/flake-utils;
     npmlock2nix = {
       url = github:nix-community/npmlock2nix;
@@ -38,7 +38,7 @@
 
     npm = pkgs.callPackage (npmlock2nix + "/default.nix") { };
 
-    version = "v15.0.2";
+    version = "v15.1.0";
 
     build_plan = ./. + "/build-plan-${version}.toml";
 
@@ -46,7 +46,7 @@
       owner = "be5invis";
       repo = "Iosevka";
       rev = version;
-      sha256 = "sha256-mcG9s/3H2FbLuQaIQm4Yw86hMRyXRAeqRRqSf6zEgkM=";
+      sha256 = "sha256-0JB8fILB8Gtjfok5KEACWT9ljbq77xf/g8ir+6M5yks=";
     };
 
     diosevka = font_type: npm.build {
