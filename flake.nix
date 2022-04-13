@@ -69,13 +69,13 @@
       '';
     };
 
-    diosevkaBdf = pkgs.stdenv.mkDerivation {
+    diosevkaBdf = size: pkgs.stdenv.mkDerivation {
       name = "diosevka-bdf";
       version = version;
       buildInputs = [ otf2bdf ];
       src = diosevka "ttf-unhinted";
       buildPhase = ''
-        otf2bdf -p 12 -rh 96 -rv 95 -o diosevka.bdf share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf || echo ""
+        otf2bdf -p ${toString size} -rh 96 -rv 95 -o diosevka.bdf share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf || echo ""
       '';
       installPhase = ''
         mkdir -p $out/share/fonts/diosevka/bdf
@@ -83,11 +83,11 @@
       '';
     };
 
-    diosevkaPsf = pkgs.stdenv.mkDerivation {
+    diosevkaPsf = size: pkgs.stdenv.mkDerivation {
       name = "diosevka-psf";
       version = version;
       buildInputs = with pkgs; [ bdf2psf ];
-      src = diosevkaBdf;
+      src = diosevkaBdf size;
 
       patchPhase = ''
         # Round the average width
@@ -118,8 +118,11 @@
       ttf = diosevka "ttf";
       ttf-unhinted = diosevka "ttf-unhinted";
       woff2 = diosevka "woff2";
-      bdf = diosevkaBdf;
-      psf = diosevkaPsf;
+
+      bdf = diosevkaBdf 12;
+      psf = diosevkaPsf 12;
+      bdf-large = diosevkaBdf 18;
+      psf-large = diosevkaPsf 18;
 
       otf2bdf = otf2bdf;
     };
