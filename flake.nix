@@ -2,10 +2,10 @@
   description = "My custom build of Iosevka";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
-    flake-utils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     npmlock2nix = {
-      url = github:nix-community/npmlock2nix;
+      url = "github:nix-community/npmlock2nix";
       flake = false;
     };
   };
