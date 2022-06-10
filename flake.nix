@@ -10,121 +10,149 @@
     };
   };
 
-  outputs = inputs: with inputs; flake-utils.lib.eachDefaultSystem (system: let
-    pkgs = nixpkgs.legacyPackages."${system}";
+  outputs = inputs:
+    with inputs;
+      flake-utils.lib.eachDefaultSystem (system: let
+        pkgs = nixpkgs.legacyPackages."${system}";
 
-    otf2bdf = pkgs.stdenv.mkDerivation rec {
-      name = "otf2bdf";
-      version = "v3.1";
+        otf2bdf = pkgs.stdenv.mkDerivation rec {
+          name = "otf2bdf";
+          version = "v3.1";
 
-      src = pkgs.fetchFromGitHub {
-        owner = "jirutka";
-        repo = name;
-        rev = version;
-        sha256 = "sha256-HK9ZrnwKhhYcBvSl+3RwFD7m/WSaPkGKX6utXnk5k+A=";
-      };
+          src = pkgs.fetchFromGitHub {
+            owner = "jirutka";
+            repo = name;
+            rev = version;
+            sha256 = "sha256-HK9ZrnwKhhYcBvSl+3RwFD7m/WSaPkGKX6utXnk5k+A=";
+          };
 
-      buildInputs = with pkgs; [ freetype ];
+          buildInputs = with pkgs; [freetype];
 
-      buildPhase = ''
-        make otf2bdf
-      '';
+          buildPhase = ''
+            make otf2bdf
+          '';
 
-      installPhase = ''
-        mkdir -p $out/bin
-        cp otf2bdf $out/bin/
-      '';
-    };
+          installPhase = ''
+            mkdir -p $out/bin
+            cp otf2bdf $out/bin/
+          '';
+        };
 
-    npm = pkgs.callPackage (npmlock2nix + "/default.nix") { };
+        npm = pkgs.callPackage (npmlock2nix + "/default.nix") {};
 
-    version = "v15.2.0";
+        version = "v15.2.0";
 
-    build_plan = ./. + "/build-plan-${version}.toml";
+        build_plan = ./. + "/build-plan-${version}.toml";
 
-    iosevka = pkgs.fetchFromGitHub {
-      owner = "be5invis";
-      repo = "Iosevka";
-      rev = version;
-      sha256 = "sha256-B6BM9z2ndA//rExinKEMjraApFk/39JsbPH0+N5pOpo=";
-    };
+        iosevka = pkgs.fetchFromGitHub {
+          owner = "be5invis";
+          repo = "Iosevka";
+          rev = version;
+          sha256 = "sha256-B6BM9z2ndA//rExinKEMjraApFk/39JsbPH0+N5pOpo=";
+        };
 
-    diosevka = font_type: npm.build {
-      src = iosevka;
-      buildInputs = with pkgs; [ ttfautohint-nox ];
+        diosevkaBase = npm.build {
+          src = iosevka;
 
-      configurePhase = ''
-        runHook preConfigure
-        cp "${build_plan}" private-build-plans.toml
-        runHook postConfigure
-      '';
+          configurePhase = ''
+            runHook preConfigure
+            cp "${build_plan}" private-build-plans.toml
+            runHook postConfigure
+          '';
 
-      buildCommands = [ "npm run build -- ${font_type}::diosevka" ];
+          buildCommands = ["npm run build -- ttf-unhinted::diosevka"];
 
-      installPhase = ''
-        runHook preInstall
-        mkdir -p $out/share/fonts/diosevka
-        cp -r dist/diosevka/${font_type} $out/share/fonts/diosevka
-        runHook postInstall
-      '';
-    };
+          installPhase = ''
+            runHook preInstall
+            mkdir -p $out
+            cp -r * $out
+            runHook postInstall
+          '';
+        };
 
-    diosevkaBdf = size: pkgs.stdenv.mkDerivation {
-      name = "diosevka-bdf";
-      version = version;
-      buildInputs = [ otf2bdf ];
-      src = diosevka "ttf-unhinted";
-      buildPhase = ''
-        otf2bdf -p ${toString size} -rh 96 -rv 95 -o diosevka.bdf share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf || echo ""
-      '';
-      installPhase = ''
-        mkdir -p $out/share/fonts/diosevka/bdf
-        cp -r diosevka.bdf $out/share/fonts/diosevka/bdf/
-      '';
-    };
+        diosevka = font_type:
+          npm.build {
+            name = "diosevka";
+            version = version;
+            src = diosevkaBase;
+            buildInputs = with pkgs; [ttfautohint-nox];
 
-    diosevkaPsf = size: pkgs.stdenv.mkDerivation {
-      name = "diosevka-psf";
-      version = version;
-      buildInputs = with pkgs; [ bdf2psf ];
-      src = diosevkaBdf size;
+            configurePhase = ''
+              runHook preConfigure
+              cp "${build_plan}" private-build-plans.toml
+              runHook postConfigure
+            '';
 
-      patchPhase = ''
-        # Round the average width
-        bdf="share/fonts/diosevka/bdf/diosevka.bdf"
-        width="$(grep AVERAGE_WIDTH $bdf | cut -d ' ' -f 2)"
-        width="$(( (((width - 1) / 10) + 2) * 10))"
-        sed -i "s/AVERAGE_WIDTH .*/AVERAGE_WIDTH $width/" $bdf
-      '';
+            buildCommands = ["npm run build -- ${font_type}::diosevka"];
 
-      buildPhase = ''
-        bdf2psf --fb \
-          share/fonts/diosevka/bdf/diosevka.bdf \
-          ${pkgs.bdf2psf}/share/bdf2psf/standard.equivalents \
-          ${pkgs.bdf2psf}/share/bdf2psf/fontsets/Uni2.512 \
-          512 \
-          diosevka.psf
-      '';
+            installPhase = ''
+              runHook preInstall
+              mkdir -p $out/share/fonts/diosevka
+              cp -r dist/diosevka/${font_type} $out/share/fonts/diosevka
+              runHook postInstall
+            '';
+          };
 
-      installPhase = ''
-        mkdir -p $out/share/fonts/diosevka/psf
-        cp -r diosevka.psf $out/share/fonts/diosevka/psf
-      '';
-    };
-  in rec {
-    packages = {
-      default = diosevka "ttf";
+        diosevkaBdf = size:
+          pkgs.stdenvNoCC.mkDerivation {
+            name = "diosevka-bdf";
+            version = version;
+            buildInputs = [otf2bdf];
+            src = diosevka "ttf-unhinted";
+            buildPhase = ''
+              otf2bdf -p ${toString size} -rh 96 -rv 95 -o diosevka.bdf share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf || echo ""
+            '';
+            installPhase = ''
+              mkdir -p $out/share/fonts/diosevka/bdf
+              cp -r diosevka.bdf $out/share/fonts/diosevka/bdf/
+            '';
+          };
 
-      ttf = diosevka "ttf";
-      ttf-unhinted = diosevka "ttf-unhinted";
-      woff2 = diosevka "woff2";
+        diosevkaPsf = size:
+          pkgs.stdenvNoCC.mkDerivation {
+            name = "diosevka-psf";
+            version = version;
+            buildInputs = with pkgs; [bdf2psf];
+            src = diosevkaBdf size;
 
-      bdf = diosevkaBdf 12;
-      psf = diosevkaPsf 12;
-      bdf-large = diosevkaBdf 18;
-      psf-large = diosevkaPsf 18;
+            patchPhase = ''
+              # Round the average width
+              bdf="share/fonts/diosevka/bdf/diosevka.bdf"
+              width="$(grep AVERAGE_WIDTH $bdf | cut -d ' ' -f 2)"
+              width="$(( (((width - 1) / 10) + 2) * 10))"
+              sed -i "s/AVERAGE_WIDTH .*/AVERAGE_WIDTH $width/" $bdf
+            '';
 
-      otf2bdf = otf2bdf;
-    };
-  });
+            buildPhase = ''
+              bdf2psf --fb \
+                share/fonts/diosevka/bdf/diosevka.bdf \
+                ${pkgs.bdf2psf}/share/bdf2psf/standard.equivalents \
+                ${pkgs.bdf2psf}/share/bdf2psf/fontsets/Uni2.512 \
+                512 \
+                diosevka.psf
+            '';
+
+            installPhase = ''
+              mkdir -p $out/share/fonts/diosevka/psf
+              cp -r diosevka.psf $out/share/fonts/diosevka/psf
+            '';
+          };
+      in rec {
+        packages = {
+          default = diosevka "ttf";
+
+          ttf = diosevka "ttf";
+          ttf-unhinted = diosevka "ttf-unhinted";
+          woff2 = diosevka "woff2";
+
+          bdf = diosevkaBdf 12;
+          psf = diosevkaPsf 12;
+          bdf-large = diosevkaBdf 18;
+          psf-large = diosevkaPsf 18;
+
+          otf2bdf = otf2bdf;
+        };
+
+        formatter = pkgs.alejandra;
+      });
 }
