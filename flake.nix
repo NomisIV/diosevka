@@ -42,7 +42,7 @@
 
         version = "v15.2.0";
 
-        build_plan = ./. + "/build-plan-${version}.toml";
+        buildPlan = ./. + "/build-plan-${version}.toml";
 
         iosevka = pkgs.fetchFromGitHub {
           owner = "be5invis";
@@ -51,56 +51,43 @@
           sha256 = "sha256-B6BM9z2ndA//rExinKEMjraApFk/39JsbPH0+N5pOpo=";
         };
 
-        diosevkaBase = npm.build {
-          src = iosevka;
-
-          configurePhase = ''
-            runHook preConfigure
-            cp "${build_plan}" private-build-plans.toml
-            runHook postConfigure
-          '';
-
-          buildCommands = ["npm run build -- ttf-unhinted::diosevka"];
-
-          installPhase = ''
-            runHook preInstall
-            mkdir -p $out
-            cp -r * $out
-            runHook postInstall
-          '';
-        };
-
-        diosevka = font_type:
+        diosevka = fontType:
           npm.build {
-            name = "diosevka";
+            pname = "diosevka-${fontType}";
             version = version;
-            src = diosevkaBase;
+            src = iosevka;
             buildInputs = with pkgs; [ttfautohint-nox];
 
             configurePhase = ''
               runHook preConfigure
-              cp "${build_plan}" private-build-plans.toml
+              cp "${buildPlan}" private-build-plans.toml
               runHook postConfigure
             '';
 
-            buildCommands = ["npm run build -- ${font_type}::diosevka"];
+            buildCommands = ["npm run build -- ${fontType}::diosevka"];
 
             installPhase = ''
               runHook preInstall
               mkdir -p $out/share/fonts/diosevka
-              cp -r dist/diosevka/${font_type} $out/share/fonts/diosevka
+              cp -r dist/diosevka/${fontType} $out/share/fonts/diosevka
               runHook postInstall
             '';
           };
 
         diosevkaBdf = size:
           pkgs.stdenvNoCC.mkDerivation {
-            name = "diosevka-bdf";
+            pname = "diosevka-bdf";
             version = version;
             buildInputs = [otf2bdf];
             src = diosevka "ttf-unhinted";
             buildPhase = ''
-              otf2bdf -p ${toString size} -rh 96 -rv 95 -o diosevka.bdf share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf || echo ""
+              otf2bdf \
+                -p ${toString size} \
+                -rh 96 \
+                -rv 95 \
+                -o diosevka.bdf \
+                share/fonts/diosevka/ttf-unhinted/diosevka-regular.ttf \
+                || echo ""
             '';
             installPhase = ''
               mkdir -p $out/share/fonts/diosevka/bdf
@@ -110,7 +97,7 @@
 
         diosevkaPsf = size:
           pkgs.stdenvNoCC.mkDerivation {
-            name = "diosevka-psf";
+            pname = "diosevka-psf";
             version = version;
             buildInputs = with pkgs; [bdf2psf];
             src = diosevkaBdf size;
