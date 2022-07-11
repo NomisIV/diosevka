@@ -4,4 +4,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - run: "nix build ."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Build default output
+        run: "nix build ."
