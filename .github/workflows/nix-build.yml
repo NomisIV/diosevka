@@ -1,0 +1,8 @@
+name: Build flake artefacts
+on: [push]
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - run: |
+        nix build .
